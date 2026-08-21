@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Govt Job Alerts – Khyber Pakhtunkhwa | KPPSC · ETEA · FPSC</title>
+    <style>
+        /* ----- CSS Variables ----- */
+        :root {
+            --primary: #0a3c30;
+            --primary-dark: #06251e;
+            --primary-light: #1a6b55;
+            --accent: #ffb703;
+            --accent-hover: #e6a500;
+            --bg: #f4f6f8;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.3s ease;
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        /* ----- Reset & Base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- Hero ----- */
+        .hero {
+            text-align: center;
+            padding: 50px 20px 40px;
+            background: linear-gradient(145deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 183, 3, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .sub {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #1e293b;
+            font-weight: 700;
+            padding: 4px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .kp-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ----- Section Titles ----- */
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title .line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        /* ----- Agency Cards (KPPSC / ETEA / FPSC) ----- */
+        .agency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .agency-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px 22px 28px;
+            transition: var(--transition);
+            position: relative;
+        }
+        .agency-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        .agency-card .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .agency-card .card-header .logo {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+        .agency-card .card-header .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .agency-card .card-header .logo-placeholder {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .agency-card .card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+        .agency-card .card-header .federal-badge {
+            background: #1e3a8a;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            margin-left: auto;
+        }
+
+        .agency-card .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+            margin-top: 4px;
+        }
+        @media (max-width: 480px) {
+            .agency-card .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .agency-card .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .agency-card .checkbox-item:hover {
+            background: #f8fafc;
+        }
+        .agency-card .checkbox-item input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .agency-card .checkbox-item label {
+            font-size: 0.92rem;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .agency-card .select-all-wrap {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .agency-card .select-all-wrap .sel-all-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .agency-card .select-all-wrap .sel-all-btn:hover {
+            background: var(--primary-dark);
+        }
+        .agency-card .select-all-wrap .sel-all-btn.outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        .agency-card .select-all-wrap .sel-all-btn.outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .agency-card .select-all-wrap .count-badge {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-left: auto;
+        }
+
+        /* ----- Payment & Form ----- */
+        .form-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px 28px;
+            margin-bottom: 40px;
+        }
+        .form-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+            color: var(--primary);
+        }
+        .form-section .payment-box {
+            background: #f8fafc;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 20px 22px;
+            margin-bottom: 24px;
+        }
+        .form-section .payment-box p {
+            margin-bottom: 6px;
+        }
+        .number-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 10px 0 6px;
+            flex-wrap: wrap;
+        }
+        .hidden-number {
+            display: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .hidden-number.show {
+            display: inline;
+        }
+        .copy-btn,
+        .reveal-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+        .copy-btn:hover,
+        .reveal-btn:hover {
+            background: var(--primary-dark);
+        }
+        .copy-btn {
+            background: #1e3a8a;
+        }
+        .copy-btn:hover {
+            background: #172554;
+        }
+        .payment-note {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fff;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 60, 48, 0.10);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .form-message {
+            margin-top: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ----- Footer ----- */
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding: 20px 0 0;
+            border-top: 1px solid var(--border);
+            margin-top: 10px;
+        }
+
+        /* ----- Complaint Button (bottom-right) ----- */
+        .complaint-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 22px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(10, 60, 48, 0.30);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 999;
+            text-decoration: none;
+        }
+        .complaint-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(10, 60, 48, 0.40);
+            background: var(--primary-dark);
+        }
+        .complaint-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* ----- Responsive tweaks ----- */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .agency-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-section {
+                padding: 20px 16px;
+            }
+            .complaint-btn {
+                bottom: 16px;
+                right: 16px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+            .complaint-btn span {
+                display: none;
+            }
+        }
+
+        /* small animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .agency-card {
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .agency-card:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+        .agency-card:nth-child(3) {
+            animation-delay: 0.16s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="container">
+            <span class="badge">🇵🇰 Khyber Pakhtunkhwa</span>
+            <h1>Govt Job Alerts – KP</h1>
+            <p class="sub">Instant email notifications for KPPSC, ETEA &amp; FPSC – advertisements, results, schedules &amp; more.</p>
+            <div class="kp-tag">📍 Khyber Pakhtunkhwa + Federal</div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container">
+
+        <!-- ===== AGENCY CARDS ===== -->
+        <div class="agency-grid">
+
+            <!-- KPPSC -->
+            <div class="agency-card" id="card-kppsc">
+                <div class="card-header">
+                    <div class="logo">
+                        <!-- kppsc.png will be displayed if present, else placeholder -->
+                        <img src="kppsc.png" alt="KPPSC" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'logo-placeholder\'>KPPSC</span>';" />
+                    </div>
+                    <h3>KPPSC</h3>
+                    <span style="font-size:0.7rem;background:#e2e8f0;padding:2px 10px;border-radius:20px;color:#475569;font-weight:600;">Provincial</span>
+                </div>
+                <div class="checkbox-grid" data-agency="kppsc">
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_adv" data-key="kppsc_advertisement" /><label for="kppsc_adv">Advertisements</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_ability" data-key="kppsc_results" /><label for="kppsc_ability">Ability Test Results</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_screening" data-key="kppsc_screening_results" /><label for="kppsc_screening">Screening Test Results</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_steno" data-key="kppsc_steno_results" /><label for="kppsc_steno">Steno Test Results</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_interview" data-key="kppsc_interview_results" /><label for="kppsc_interview">Interview Results</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_nomination" data-key="kppsc_nomination_letters" /><label for="kppsc_nomination">Nomination Letters</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="kppsc_nonjoiner" data-key="kppsc_non_joiners" /><label for="kppsc_nonjoiner">Non Joiner Letters</label></div>
+                </div>
+                <div class="select-all-wrap">
+                    <button class="sel-all-btn" data-target="kppsc">Select All</button>
+                    <button class="sel-all-btn outline" data-target="kppsc">Clear</button>
+                    <span class="count-badge" id="count-kppsc">0 selected</span>
+                </div>
+            </div>
+
+            <!-- ETEA -->
+            <div class="agency-card" id="card-etea">
+                <div class="card-header">
+                    <div class="logo">
+                        <img src="etea.png" alt="ETEA" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'logo-placeholder\'>ETEA</span>';" />
+                    </div>
+                    <h3>ETEA</h3>
+                    <span style="font-size:0.7rem;background:#e2e8f0;padding:2px 10px;border-radius:20px;color:#475569;font-weight:600;">Provincial</span>
+                </div>
+                <div class="checkbox-grid" data-agency="etea">
+                    <div class="checkbox-item"><input type="checkbox" id="etea_adv" data-key="etea_advertisement" /><label for="etea_adv">Advertisements (Projects)</label></div>
+                </div>
+                <div class="select-all-wrap">
+                    <button class="sel-all-btn" data-target="etea">Select All</button>
+                    <button class="sel-all-btn outline" data-target="etea">Clear</button>
+                    <span class="count-badge" id="count-etea">0 selected</span>
+                </div>
+            </div>
+
+            <!-- FPSC (Federal) -->
+            <div class="agency-card" id="card-fpsc">
+                <div class="card-header">
+                    <div class="logo">
+                        <img src="fpsc.png" alt="FPSC" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'logo-placeholder\'>FPSC</span>';" />
+                    </div>
+                    <h3>FPSC</h3>
+                    <span class="federal-badge">🇵🇰 Federal</span>
+                </div>
+                <div class="checkbox-grid" data-agency="fpsc">
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_jobs_gr" data-key="fpsc_jobs_gr" /><label for="fpsc_jobs_gr">Jobs – GR</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_jobs_css" data-key="fpsc_jobs_css" /><label for="fpsc_jobs_css">Jobs – CSS</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_jobs_other" data-key="fpsc_jobs_other" /><label for="fpsc_jobs_other">Jobs – Other Exams</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_merit" data-key="fpsc_results_merit" /><label for="fpsc_res_merit">Results – Merit List</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_short" data-key="fpsc_results_short" /><label for="fpsc_res_short">Results – Short Listing</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_nom" data-key="fpsc_results_nominations" /><label for="fpsc_res_nom">Results – Nominations</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_fail" data-key="fpsc_results_failure" /><label for="fpsc_res_fail">Results – Failure Cases</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_ans" data-key="fpsc_results_answerkeys" /><label for="fpsc_res_ans">Results – Answer Keys</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_mpt" data-key="fpsc_results_mpt" /><label for="fpsc_res_mpt">Results – MPT</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_written" data-key="fpsc_results_written" /><label for="fpsc_res_written">Results – Written Result</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_final" data-key="fpsc_results_final" /><label for="fpsc_res_final">Results – Final Result</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_sope" data-key="fpsc_results_sope" /><label for="fpsc_res_sope">Results – SOPE</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="fpsc_res_fpoe" data-key="fpsc_results_fpoe" /><label for="fpsc_res_fpoe">Results – FPOE</label></div>
+                </div>
+                <div class="select-all-wrap">
+                    <button class="sel-all-btn" data-target="fpsc">Select All</button>
+                    <button class="sel-all-btn outline" data-target="fpsc">Clear</button>
+                    <span class="count-badge" id="count-fpsc">0 selected</span>
+                </div>
+            </div>
+
+        </div><!-- /agency-grid -->
+
+        <!-- ===== PAYMENT & SUBSCRIPTION ===== -->
+        <div class="form-section">
+            <h2>Subscribe – Only 50 PKR / month</h2>
+
+            <div class="payment-box">
+                <p><strong>Pay via Easypaisa:</strong></p>
+                <div class="number-row">
+                    <button class="reveal-btn" id="reveal-number-btn">👁 Show Number</button>
+                    <span class="hidden-number" id="easypaisa-number">0348-4423340</span>
+                    <button class="copy-btn" id="copy-btn" style="display:none;">📋 Copy</button>
+                </div>
+                <p class="payment-note">This is a dedicated payment number. Please do not call or WhatsApp.</p>
+                <p style="margin-top:8px;">After payment, note the <strong>Transaction ID</strong> from SMS and enter below.</p>
+            </div>
+
+            <form id="subscribe-form">
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="transactionId">Easypaisa Transaction ID</label>
+                    <input type="text" id="transactionId" placeholder="e.g., 1234567890" required />
+                </div>
+                <button type="submit" class="submit-btn">Submit for Verification</button>
+            </form>
+            <p class="form-message" id="form-message"></p>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            &copy; 2026 Govt Job Alerts – Khyber Pakhtunkhwa. All rights reserved.
+        </div>
+
+    </div><!-- /container -->
+
+    <!-- ===== COMPLAINT BUTTON (bottom-right) ===== -->
+    <a class="complaint-btn" href="mailto:ecstatictrumpet531@gmail.com?subject=Job%20Alerts%20Complaint&body=Dear%20Team%2C%0A%0AI%20am%20facing%20the%20following%20issue%3A%0A%0A" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
+        <span>Report Issue</span>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- DOM refs -----
+            const form = document.getElementById('subscribe-form');
+            const msg = document.getElementById('form-message');
+            const revealBtn = document.getElementById('reveal-number-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const numberEl = document.getElementById('easypaisa-number');
+
+            // ----- Select All / Clear buttons -----
+            document.querySelectorAll('.sel-all-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.dataset.target;
+                    const card = document.getElementById('card-' + target);
+                    if (!card) return;
+                    const checkboxes = card.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+                    const isSelect = !this.classList.contains('outline');
+                    checkboxes.forEach(cb => cb.checked = isSelect);
+                    updateCounts();
+                });
+            });
+
+            // ----- Update per-card counts -----
+            function updateCounts() {
+                ['kppsc', 'etea', 'fpsc'].forEach(agency => {
+                    const card = document.getElementById('card-' + agency);
+                    if (!card) return;
+                    const cbs = card.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+                    const checked = Array.from(cbs).filter(cb => cb.checked).length;
+                    const badge = document.getElementById('count-' + agency);
+                    if (badge) badge.textContent = checked + ' selected';
+                });
+            }
+
+            // ----- Re-count on any checkbox change -----
+            document.querySelectorAll('.checkbox-grid input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', updateCounts);
+            });
+            // initial count
+            updateCounts();
+
+            // ----- Reveal / Hide Easypaisa number -----
+            revealBtn.addEventListener('click', function() {
+                const isShowing = numberEl.classList.contains('show');
+                if (isShowing) {
+                    numberEl.classList.remove('show');
+                    revealBtn.textContent = '👁 Show Number';
+                    copyBtn.style.display = 'none';
+                } else {
+                    numberEl.classList.add('show');
+                    revealBtn.textContent = '🙈 Hide Number';
+                    copyBtn.style.display = 'inline-flex';
+                }
+            });
+
+            // ----- Copy number -----
+            copyBtn.addEventListener('click', async function() {
+                const number = '0348-4423340';
+                try {
+                    await navigator.clipboard.writeText(number);
+                    copyBtn.textContent = '✅ Copied';
+                    setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
+                } catch (_) {
+                    // fallback
+                    const ta = document.createElement('textarea');
+                    ta.value = number;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    copyBtn.textContent = '✅ Copied';
+                    setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
+                }
+            });
+
+            // ----- Form submission -----
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value.trim();
+                const transactionId = document.getElementById('transactionId').value.trim();
+
+                if (!email || !transactionId) {
+                    msg.textContent = 'Please fill in both email and transaction ID.';
+                    msg.style.color = 'red';
+                    return;
+                }
+
+                // Collect preferences
+                const prefs = {};
+                document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked').forEach(cb => {
+                    const key = cb.dataset.key;
+                    if (key) prefs[key] = true;
+                });
+
+                if (Object.keys(prefs).length === 0) {
+                    msg.textContent = 'Please select at least one notification type.';
+                    msg.style.color = 'red';
+                    return;
+                }
+
+                msg.textContent = 'Submitting...';
+                msg.style.color = '#1e293b';
+
+                const payload = {
+                    email: email,
+                    transactionId: transactionId,
+                    preferences: prefs
+                };
+
+                const BACKEND_URL = 'https://job-alerts-backend-gamma.vercel.app/api/subscribe';
+
+                try {
+                    const resp = await fetch(BACKEND_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await resp.json();
+                    if (resp.ok) {
+                        msg.textContent = result.message || 'Submitted! You will receive a confirmation email after verification.';
+                        msg.style.color = 'green';
+                        form.reset();
+                        // uncheck all
+                        document.querySelectorAll('.checkbox-grid input[type="checkbox"]').forEach(cb => cb.checked = false);
+                        updateCounts();
+                    } else {
+                        msg.textContent = result.error || 'Something went wrong. Please try again.';
+                        msg.style.color = 'red';
+                    }
+                } catch (err) {
+                    msg.textContent = 'Network error. Please check your connection.';
+                    msg.style.color = 'red';
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
